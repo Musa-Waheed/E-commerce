@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "Wireless Headphones",
         price: 79.99,
-        category: "Electronics",
+        category: "luxury",
         image: "🎧",
         description: "High-quality wireless headphones with noise cancellation",
         rating: 4.5
@@ -13,7 +13,7 @@ const products = [
         id: 2,
         name: "USB-C Cable",
         price: 12.99,
-        category: "Electronics",
+        category: "luxury",
         image: "🔌",
         description: "Durable and fast-charging USB-C cable",
         rating: 4.3
@@ -22,7 +22,7 @@ const products = [
         id: 3,
         name: "T-Shirt",
         price: 24.99,
-        category: "Clothing",
+        category: "Man",
         image: "👕",
         description: "Comfortable cotton t-shirt available in multiple colors",
         rating: 4.2
@@ -31,7 +31,7 @@ const products = [
         id: 4,
         name: "Jeans",
         price: 49.99,
-        category: "Clothing",
+        category: "Man",
         image: "👖",
         description: "Classic blue denim jeans perfect for everyday wear",
         rating: 4.4
@@ -40,7 +40,7 @@ const products = [
         id: 5,
         name: "Programming Book",
         price: 39.99,
-        category: "Books",
+        category: "Man",
         image: "📖",
         description: "Complete guide to modern web development",
         rating: 4.6
@@ -49,7 +49,7 @@ const products = [
         id: 6,
         name: "JavaScript Guide",
         price: 34.99,
-        category: "Books",
+        category: "Man",
         image: "📚",
         description: "Learn JavaScript from beginner to advanced",
         rating: 4.5
@@ -58,7 +58,7 @@ const products = [
         id: 7,
         name: "Coffee Maker",
         price: 89.99,
-        category: "Home",
+        category: "luxury",
         image: "☕",
         description: "Programmable coffee maker with thermal carafe",
         rating: 4.3
@@ -67,7 +67,7 @@ const products = [
         id: 8,
         name: "Desk Lamp",
         price: 45.99,
-        category: "Home",
+        category: "luxury",
         image: "💡",
         description: "LED desk lamp with adjustable brightness",
         rating: 4.4
@@ -76,7 +76,7 @@ const products = [
         id: 9,
         name: "Smartphone",
         price: 599.99,
-        category: "Electronics",
+        category: "luxury",
         image: "📱",
         description: "Latest smartphone with advanced features",
         rating: 4.7
@@ -85,7 +85,7 @@ const products = [
         id: 10,
         name: "Sneakers",
         price: 89.99,
-        category: "Clothing",
+        category: "kids",
         image: "👟",
         description: "Comfortable and stylish sports sneakers",
         rating: 4.5
@@ -94,7 +94,7 @@ const products = [
         id: 11,
         name: "Design Book",
         price: 44.99,
-        category: "Books",
+        category: "Women",
         image: "🎨",
         description: "Essential principles of UI/UX design",
         rating: 4.4
@@ -103,7 +103,7 @@ const products = [
         id: 12,
         name: "Pillow",
         price: 29.99,
-        category: "Home",
+        category: "luxury",
         image: "🛏️",
         description: "Premium memory foam pillow for better sleep",
         rating: 4.3
@@ -190,7 +190,15 @@ function loadAllProducts(filtered = false) {
     if (!container) return;
 
     const searchQuery = getQueryParam('q') || '';
-    const shouldFilter = filtered || searchQuery.trim().length > 0;
+    const categoryQuery = getQueryParam('category') || '';
+
+    // If a category query is present, show it in the filter dropdown (if present)
+    const categoryFilter = document.getElementById('categoryFilter');
+    if (categoryFilter && categoryQuery) {
+        categoryFilter.value = categoryQuery;
+    }
+
+    const shouldFilter = filtered || searchQuery.trim().length > 0 || categoryQuery.trim().length > 0;
     let productsToShow = shouldFilter ? getFilteredProducts(searchQuery) : products;
 
     if (productsToShow.length === 0) {
@@ -710,7 +718,8 @@ function setupFilters() {
 
 // Get Filtered Products
 function getFilteredProducts(searchQuery = '') {
-    const category = document.getElementById('categoryFilter')?.value || '';
+    const queryCategory = getQueryParam('category') || '';
+    const category = queryCategory || (document.getElementById('categoryFilter')?.value || '');
     const maxPrice = parseInt(document.getElementById('priceFilter')?.value || 5000);
     const query = searchQuery.trim().toLowerCase();
 
