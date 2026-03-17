@@ -572,24 +572,86 @@ function validateCheckoutForm() {
 // Process Order
 function processOrder() {
     const orderNumber = Math.floor(Math.random() * 1000000);
-    document.getElementById('orderNumber').textContent = `Order #: ${orderNumber}`;
     
-    const successModal = document.getElementById('successModal');
-    if (successModal) {
-        successModal.style.display = 'block';
-    }
+    // Collect order data
+    const orderData = {
+        id: orderNumber,
+        customer: {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            zipcode: document.getElementById('zipcode').value,
+            country: document.getElementById('country').value
+        },
+        items: cart.map(item => ({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            total: item.price * item.quantity
+        })),
+        paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+        subtotal: calculateSubtotal(),
+        tax: calculateTax(),
+        shipping: 10, // Fixed shipping
+        total: calculateTotal(),
+        status: 'pending',
+        date: new Date().toISOString()
+    };
     
-    // Clear cart
-    setTimeout(() => {
-        cart = [];
-        saveCart();
-        updateCartCount();
+    // Save order to database
+    fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Order saved:', data);
+        document.getElementById('orderNumber').textContent = `Order #: ${orderNumber}`;
         
-        // Redirect after 3 seconds
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+            successModal.style.display = 'block';
+        }
+        
+        // Clear cart
         setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 3000);
-    }, 2000);
+            cart = [];
+            saveCart();
+            updateCartCount();
+            
+            // Redirect after 3 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        }, 2000);
+    })
+    .catch(error => {
+        console.error('Error saving order:', error);
+        showNotification('Error processing order. Please try again.', 'error');
+    });
+}
+
+// Calculate Subtotal
+function calculateSubtotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+}
+
+// Calculate Tax
+function calculateTax() {
+    return calculateSubtotal() * 0.1;
+}
+
+// Calculate Total
+function calculateTotal() {
+    return calculateSubtotal() + calculateTax() + 10; // Fixed shipping
 }
 
 // Filter Products
