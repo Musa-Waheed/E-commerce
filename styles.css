@@ -84,6 +84,24 @@ html {
     z-index: 100;
 }
 
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle .bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #333;
+    margin: 4px 0;
+    transition: transform 0.3s ease;
+}
+
 .nav-content {
     display: flex;
     justify-content: space-between;
@@ -242,6 +260,18 @@ html {
 .hero.banner {
     min-height: 720px;
     background: url('hero.png') center/cover no-repeat;
+}
+
+@media (max-width: 900px) {
+    .hero.banner {
+        min-height: 560px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero.banner {
+        min-height: 420px;
+    }
 }
 
 .hero-overlay {
@@ -427,6 +457,24 @@ html {
     .nav-left,
     .nav-right {
         display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        box-shadow: var(--shadow);
+        z-index: 120;
     }
 
     .top-bar-content {
@@ -1227,5 +1275,9 @@ html {
 
     .btn-full {
         width: 100%;
+    }
+
+    .nav-toggle {
+        display: block;
     }
 }

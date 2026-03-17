@@ -144,6 +144,18 @@ function setupSearchBar() {
     });
 }
 
+function setupMobileNav() {
+    const toggleButtons = document.querySelectorAll('.nav-toggle');
+
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const nav = btn.closest('nav');
+            const links = nav.querySelectorAll('.nav-links');
+            links.forEach(linkContainer => linkContainer.classList.toggle('open'));
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load cart from localStorage on page load
     const savedCart = localStorage.getItem('cart');
@@ -160,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     updateCartCount();
     setupSearchBar();
+    setupMobileNav();
     const path = window.location.pathname;
     
     if (path.includes('index.html') || path.endsWith('/')) {
