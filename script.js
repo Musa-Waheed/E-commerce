@@ -509,6 +509,17 @@ function setupCheckoutForm() {
         });
     }
     
+    // Handle Payment Method Selection
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            toggleCardFields(this.value === 'card');
+        });
+    });
+    
+    // Initially toggle based on default
+    toggleCardFields(document.querySelector('input[name="paymentMethod"]:checked').value === 'card');
+    
     // Handle Form Submission
     checkoutForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -519,25 +530,40 @@ function setupCheckoutForm() {
     });
 }
 
+// Toggle Card Fields Visibility
+function toggleCardFields(show) {
+    const cardFields = document.getElementById('cardFields');
+    const required = show;
+    cardFields.style.display = show ? 'block' : 'none';
+    document.getElementById('cardName').required = required;
+    document.getElementById('cardNumber').required = required;
+    document.getElementById('expiry').required = required;
+    document.getElementById('cvv').required = required;
+}
+
 // Validate Checkout Form
 function validateCheckoutForm() {
-    const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
-    const expiry = document.getElementById('expiry').value;
-    const cvv = document.getElementById('cvv').value;
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
     
-    if (cardNumber.length !== 16) {
-        showNotification('Please enter a valid card number', 'error');
-        return false;
-    }
-    
-    if (!/^\d{2}\/\d{2}$/.test(expiry)) {
-        showNotification('Please enter expiry in MM/YY format', 'error');
-        return false;
-    }
-    
-    if (cvv.length !== 3) {
-        showNotification('Please enter a valid CVV', 'error');
-        return false;
+    if (paymentMethod === 'card') {
+        const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+        const expiry = document.getElementById('expiry').value;
+        const cvv = document.getElementById('cvv').value;
+        
+        if (cardNumber.length !== 16) {
+            showNotification('Please enter a valid card number', 'error');
+            return false;
+        }
+        
+        if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+            showNotification('Please enter expiry in MM/YY format', 'error');
+            return false;
+        }
+        
+        if (cvv.length !== 3) {
+            showNotification('Please enter a valid CVV', 'error');
+            return false;
+        }
     }
     
     return true;
