@@ -7,62 +7,89 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span>Free shipping on U.S. orders over $99</span>
+            <div class="top-links">
+                <a href="#">Brands</a>
+                <a href="#">Collections</a>
+                <a href="#">Sale</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <h1>ShopHub</h1>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="cart.html">Cart <span class="cart-count" id="cartCount">0</span></a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                </ul>
+        <div class="container nav-container">
+            <ul class="nav-links nav-left">
+                <li><a href="#" class="active">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New</a></li>
+            </ul>
+
+            <div class="logo">
+                <h1>WATCHES<span class="dot">.</span>com</h1>
             </div>
+
+            <form id="searchForm" class="nav-search">
+                <input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products">
+                <button type="submit">Search</button>
+            </form>
+
+            <ul class="nav-links nav-right">
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="cart.html">Cart <span class="cart-count" id="cartCount">0</span></a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero banner">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2>Welcome to ShopHub</h2>
-            <p>Discover amazing products at unbeatable prices</p>
-            <a href="products.html" class="btn btn-primary">Shop Now</a>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="featured-section">
-        <div class="container">
-            <h2>Featured Products</h2>
-            <div class="products-grid" id="featuredProducts">
-                <!-- Products will be loaded here -->
+            <span class="pre-title">Just Received</span>
+            <h2>New Limited Editions</h2>
+            <p>Explore the newest arrivals and exclusive collections before they sell out.</p>
+            <div class="hero-actions">
+                <a href="products.html" class="btn btn-primary">Shop New Arrivals</a>
+                <a href="products.html" class="btn btn-secondary">Browse Collections</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section">
+    <!-- Collections Section -->
+    <section class="collections">
         <div class="container">
-            <h2>Why Choose ShopHub?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🚚 Fast Shipping</h3>
-                    <p>Get your orders delivered quickly and safely to your doorstep.</p>
+            <div class="section-header">
+                <h2>Most Popular Collections</h2>
+                <p>Shop the styles people are loving right now.</p>
+            </div>
+            <div class="collections-grid">
+                <div class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1518544785927-387c6f122e0c?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="collection-info">
+                        <h3>OVD</h3>
+                        <a href="products.html" class="btn btn-outline">Shop Archetype</a>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>💰 Best Prices</h3>
-                    <p>We offer competitive pricing on all our products.</p>
+                <div class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1514702568966-0bf6bfb9e2f0?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="collection-info">
+                        <h3>Timex</h3>
+                        <a href="products.html" class="btn btn-outline">Shop Timex</a>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>🔒 Secure Payment</h3>
-                    <p>Your payment information is safe and secure with us.</p>
+                <div class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1559459299-5fa8f4dd31b2?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="collection-info">
+                        <h3>Spinnaker</h3>
+                        <a href="products.html" class="btn btn-outline">Shop Spinnaker</a>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>📞 24/7 Support</h3>
-                    <p>Our customer support team is always ready to help you.</p>
+                <div class="collection-card" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="collection-info">
+                        <h3>G-Shock</h3>
+                        <a href="products.html" class="btn btn-outline">Shop G-Shock</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,30 +97,40 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>About Us</h4>
-                    <p>ShopHub is your trusted online shopping destination offering quality products.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: info@shophub.com</p>
-                    <p>Phone: +1-800-SHOPHUB</p>
-                </div>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h4>About</h4>
+                <p>We only carry watch brands that make a statement. Explore our curated collection of timepieces built for style and performance.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 ShopHub. All rights reserved.</p>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
             </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Stay Connected</h4>
+                <p>Sign up to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                <form class="footer-newsletter" onsubmit="event.preventDefault(); showNotification('Subscribed!', 'success');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WATCHES.com. All rights reserved.</p>
         </div>
     </footer>
 
