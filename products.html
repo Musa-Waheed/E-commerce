@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>ShopHub</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="cart.html">Cart <span class="cart-count" id="cartCount">0</span></a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Explore our wide range of high-quality products</p>
+        </div>
+    </section>
+
+    <!-- Filter and Products -->
+    <section class="products-section">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category:</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Books">Books</option>
+                        <option value="Home">Home</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priceFilter">Max Price:</label>
+                    <input type="range" id="priceFilter" min="0" max="5000" value="5000">
+                    <span id="priceValue">$5000</span>
+                </div>
+                <button class="btn btn-secondary" id="resetFilters">Reset Filters</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Product Details -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="">
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalCategory" class="category-badge"></p>
+                    <p id="modalDescription"></p>
+                    <p id="modalPrice" class="price"></p>
+                    <div class="quantity-control">
+                        <button id="decreaseQty">-</button>
+                        <input type="number" id="quantityInput" value="1" min="1">
+                        <button id="increaseQty">+</button>
+                    </div>
+                    <button class="btn btn-primary" id="addToCartBtn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>ShopHub is your trusted online shopping destination offering quality products.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@shophub.com</p>
+                    <p>Phone: +1-800-SHOPHUB</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
