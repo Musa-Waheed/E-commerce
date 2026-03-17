@@ -1,3 +1,49 @@
 {
-  "orders": []
+  "orders": [
+    {
+      "id": 285217,
+      "customer": {
+        "firstName": "MUSA",
+        "lastName": "Waheed",
+        "email": "musawaheed99@gmail.com",
+        "phone": "03324339882",
+        "address": "lahore,pakistan",
+        "city": "Lahore",
+        "state": "Punjab",
+        "zipcode": "54920",
+        "country": "Pakistan"
+      },
+      "items": [
+        {
+          "id": 3,
+          "name": "T-Shirt",
+          "price": 24.99,
+          "quantity": 1,
+          "total": 24.99
+        },
+        {
+          "id": 4,
+          "name": "Jeans",
+          "price": 49.99,
+          "quantity": 1,
+          "total": 49.99
+        },
+        {
+          "id": 5,
+          "name": "Programming Book",
+          "price": 39.99,
+          "quantity": 1,
+          "total": 39.99
+        }
+      ],
+      "paymentMethod": "cod",
+      "subtotal": 114.97,
+      "tax": 11.497,
+      "shipping": 10,
+      "total": 136.46699999999998,
+      "status": "pending",
+      "date": "2026-03-17T22:20:51.668Z",
+      "createdAt": "2026-03-17T22:20:51.732Z"
+    }
+  ]
 }
